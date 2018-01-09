@@ -218,7 +218,15 @@ def report():
         file.write('number of high symmetry lines: %d\n' %(int(kptsnum/knump)))
         file.write('the high symmetry points: ' + str(klabels) +'\n')
         file.write('the position of high symmetry points: ' + str(kdists) +'\n\n')
-        
+        if nspin == 1:
+            if eigs_res[1] < 1e-3:
+                file.write('BE CARE! The Band Gap: %.6f eV is too small to tell its properties. Please check bands.dat carefully.\n' %eigs_res[1])
+            else:
+                file.write('This calculation is insulating with band gap %.6f eV.\n' %eigs_res[1])
+        else:
+            file.write('gap_up(blue): %.6f, gap_dn(red): %.6f (eV)\n' %(eigs_res[2],eigs_res[3]))
+
+        file.write('\n')
         file.write('Finished!')
 
 def __main__():
