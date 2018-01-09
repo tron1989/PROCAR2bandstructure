@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import os
 import time
 
+ylims=(-10,10)
+
 # the common case
 #import subprocess
 #B=subprocess.getoutput('grep band PROCAR')
@@ -144,7 +146,7 @@ def get_eigs(filename='PROCAR'):
 kdist=np.array(get_kdist())
 kdists=[kdist[0]]
 xlims=(kdist.min(),kdist.max())
-ylims=(-10,10)
+
 for i in range(len(klabels)-1):
     value=kdist[(i+1)*knump-1]
     kdists.append(value)
